@@ -1,0 +1,27 @@
+.postItem{
+
+}
+
+.form_header{
+    font-size: 4vw;
+    color: firebrick;
+    align-items: center;
+}
+
+button {
+    width: 50%;
+}
+
+.submit_button{
+    background: green;
+    color: aliceblue;
+    font-size: 1.5vw;
+
+}
+
+.reset_button{
+    background: red;
+    color: aliceblue;
+    font-size: 1.5vw;
+
+}
