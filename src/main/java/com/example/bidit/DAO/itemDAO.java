@@ -2,12 +2,12 @@ package com.example.bidit.DAO;
 
 import com.example.bidit.Model.Item;
 
+import java.sql.Date;
 import java.sql.SQLException;
 
 public interface itemDAO {
-    public int insert (Item item) throws SQLException;
-    public int update (int itemID) throws SQLException;
-    public int delete (int itemID) throws SQLException;
-    public Item select (String userName, String Password) throws SQLException;
-    public Item insert (String userName, String email, String password) throws SQLException;
+    public void insert (int ownerID, String itemName, double Price, String description, int addressID, Date bidEnd, String image) throws SQLException;
+    public void update (Item item) throws SQLException;
+    public void delete (int itemID) throws SQLException;
+    public Item select (int itemId) throws SQLException;
 }

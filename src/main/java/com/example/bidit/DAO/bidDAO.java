@@ -5,9 +5,8 @@ import com.example.bidit.Model.Bid;
 import java.sql.SQLException;
 
 public interface bidDAO {
-    public int insert (Bid bid) throws SQLException;
-    public int update (int bidID) throws SQLException;
-    public int delete (int bidID) throws SQLException;
-    public Bid select (String userName, String Password) throws SQLException;
-    public Bid insert (String userName, String email, String password) throws SQLException;
+    public void insert (int UserID, int itemID, double amount) throws SQLException;
+    public void update (Bid bid) throws SQLException;
+    public void delete (int bidID) throws SQLException;
+    public Bid select (int bidId) throws SQLException;
 }

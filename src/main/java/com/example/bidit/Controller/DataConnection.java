@@ -1,4 +1,4 @@
-package com.example.bidit.Database;
+package com.example.bidit.Controller;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
