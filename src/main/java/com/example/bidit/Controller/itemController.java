@@ -14,21 +14,21 @@ public class itemController implements itemDAO {
     PreparedStatement stmt = null;
     ResultSet rs = null;
 
-    Item item;
+    Item item = new Item();
     ArrayList<Item> itemArrayList;
 
     @Override
-    public void insert(int ownerID, String itemName, double Price, String description, int addressID, Date bidEnd, String image) throws SQLException {
+    public void insert(int ownerID, String itemName, double Price, String description, String image) throws SQLException {
         try{
+            Date bidEnd = new Date(2024, 11,21);
             conn = getConnection();
-            stmt = conn.prepareStatement("INSERT INTO item(ownerID, itemName, Price, description, addressID, bidEnd, image) VALUES (?,?,?,?,?,?,?)");
+            stmt = conn.prepareStatement("INSERT INTO item(ownerID, itemName, Price, description, bidEnd, image) VALUES (?,?,?,?,?,?)");
             stmt.setInt(1, ownerID);
             stmt.setString(2, itemName);
             stmt.setDouble(3, Price);
             stmt.setString(4, description);
-            stmt.setInt(5, addressID);
-            stmt.setDate(6, bidEnd);
-            stmt.setString(7,image);
+            stmt.setDate(5, bidEnd);
+            stmt.setString(6,image);
 
             stmt.executeUpdate();
 
@@ -47,15 +47,14 @@ public class itemController implements itemDAO {
 
             if (rs.next()) {
                 item = new Item(
-                        (long) rs.getInt(1),
+                        rs.getInt(1),
                         rs.getInt(2),
                         rs.getString(3),
                         rs.getDouble(4),
                         rs.getString(5),
-                        rs.getInt(6),
+                        rs.getDate(6),
                         rs.getDate(7),
-                        rs.getDate(8),
-                        rs.getString(9)
+                        rs.getString(8)
                 );
                 return item;
             }
@@ -69,14 +68,13 @@ public class itemController implements itemDAO {
     public void update(Item item) throws SQLException {
         try {
             conn = getConnection();
-            stmt = conn.prepareStatement("UPDATE item SET itemName=?, Price=?, description=?, addressID=?, bidEnd=?, image=? WHERE itemID=?;");
+            stmt = conn.prepareStatement("UPDATE item SET itemName=?, Price=?, description=?, bidEnd=?, image=? WHERE itemID=?;");
             stmt.setString(1, item.getItemName());
             stmt.setDouble(2, item.getPrice());
             stmt.setString(3, item.getDescription());
-            stmt.setInt(4, item.getAddressID());
-            stmt.setDate(5, item.getBidEnd());
-            stmt.setString(6, item.getImage());
-            stmt.setInt(7, Math.toIntExact(item.getId()));
+            stmt.setDate(4, item.getBidEnd());
+            stmt.setString(5, item.getImage());
+            stmt.setInt(6, item.getId());
 
             stmt.executeUpdate();
         } catch (SQLException | ClassNotFoundException e) {

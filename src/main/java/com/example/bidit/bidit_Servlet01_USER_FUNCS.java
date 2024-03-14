@@ -7,6 +7,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -20,11 +21,11 @@ public class bidit_Servlet01_USER_FUNCS extends HttpServlet {
     itemController itemControl;
     bidController bidControl;
 
-    User user;
-    Banking bank;
-    Address address;
-    Item item;
-    Bid bid;
+    User user = new User();
+    Banking bank = new Banking();
+    Address address = new Address();
+    Item item = new Item();
+    Bid bid = new Bid();
 
     ArrayList<Item> items;
     ArrayList<Bid> bids;
@@ -34,10 +35,6 @@ public class bidit_Servlet01_USER_FUNCS extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
-    }
-
-    public void doPost(HttpServletRequest request, HttpServletResponse response){
         String url = request.getServletPath();
         switch (url) {
             case "/login":
@@ -53,21 +50,68 @@ public class bidit_Servlet01_USER_FUNCS extends HttpServlet {
                 } catch (SQLException | ServletException | IOException e) {
                     throw new RuntimeException(e);
                 }
+            case "/addItem":
+                try {
+                    addItem(request, response);
+                } catch (ServletException | SQLException e) {
+                    throw new RuntimeException(e);
+                }
         }
     }
 
+    private void addItem(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        HttpSession sess = request.getSession();
+        user = (User) sess.getAttribute("user");
+        String itemName = request.getParameter("itemName");
+        int price = Integer.parseInt(request.getParameter("price"));
+        String description = request.getParameter("description");
+        String image = request.getParameter("image");
+
+        itemControl = new itemController();
+        itemControl.insert(user.getId(), itemName, price, description, image);
+
+        sess.setAttribute("user", user);
+
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/bidPage.jsp");
+        rd.include(request,response);
+        rd.forward(request,response);
+        response.sendRedirect("bidPage.jsp");
+    }
+
+    public void doPost(HttpServletRequest request, HttpServletResponse response){
+
+    }
+
     public void login(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        HttpSession sess = request.getSession();
+
         String username = request.getParameter("userName");
         String password = request.getParameter("password");
 
+        uControl = new userController();
         user = uControl.select(username, password);
 
-        setRequestReturn(request, response);
+        sess.setAttribute("user", user);
+
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/bidPage.jsp");
+        rd.include(request,response);
+        rd.forward(request,response);
+        response.sendRedirect("bidPage.jsp");
+
     }
 
 
 
     public void register(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        HttpSession sess = request.getSession();
+
+        bankControl = new bankingController();
+        addressControl = new addressController();
+        uControl = new userController();
+        bank = new Banking();
+        address = new Address();
+        user = new User();
+
         int accountNum = Integer.parseInt(request.getParameter("accountNum"));
         int branchNum = Integer.parseInt(request.getParameter("branchNum"));
         int transitNum = Integer.parseInt(request.getParameter("transitNum"));
@@ -96,16 +140,12 @@ public class bidit_Servlet01_USER_FUNCS extends HttpServlet {
                 Math.toIntExact(bank.getId()), Math.toIntExact(address.getId()),password);
         user = uControl.select(username, password);
 
-        setRequestReturn(request, response);
-    }
+        sess.setAttribute("user", user);
 
-    private void setRequestReturn(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("user", user);
-
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/pages/displayPage.jsp");
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/bidPage.jsp");
         rd.include(request,response);
         rd.forward(request,response);
-        response.sendRedirect("pages/displayPage.jsp");
+        response.sendRedirect("bidPage.jsp");
     }
 
     public void destroy() {

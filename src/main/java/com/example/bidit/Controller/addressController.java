@@ -18,7 +18,7 @@ public class addressController implements addressDAO {
     PreparedStatement stmt = null;
     ResultSet rs = null;
 
-    Address address;
+    Address address = new Address();
     ArrayList<Address> addressArrayList;
 
     @Override
@@ -38,11 +38,33 @@ public class addressController implements addressDAO {
             stmt = conn.prepareStatement("SELECT * FROM address WHERE StreetNo = ? and streetName =?");
             stmt.setInt(1, StreetNo);
             stmt.setString(2, streetName);
+            stmt.executeQuery();
+
+            address = select(StreetNo, streetName, city, PostalCode, province, country);
+            return address;
+
+        } catch (Exception ex) {
+            System.out.println("Error:" + ex.getMessage());
+        }
+        return address;
+    }
+
+    public Address select(int StreetNo, String streetName, String city, String PostalCode, String province, String country) throws SQLException {
+        try {
+            conn = getConnection();
+            stmt = conn.prepareStatement("SELECT * FROM address WHERE StreetNo=? and streetName=? and city=? and PostalCode=? and province=? and country=?");
+            stmt.setInt(1, StreetNo);
+            stmt.setString(1, streetName);
+            stmt.setString(1, city);
+            stmt.setString(1, PostalCode);
+            stmt.setString(1, province);
+            stmt.setString(1, country);
+
             rs = stmt.executeQuery();
 
             if (rs.next()) {
                 address = new Address(
-                        (long) rs.getInt(1),
+                        rs.getInt(1),
                         rs.getInt(2),
                         rs.getString(3),
                         rs.getString(4),
@@ -52,8 +74,8 @@ public class addressController implements addressDAO {
                 );
                 return address;
             }
-        } catch (Exception ex) {
-            System.out.println("Error:" + ex.getMessage());
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
         return address;
     }
@@ -68,7 +90,7 @@ public class addressController implements addressDAO {
 
             if (rs.next()) {
                 address = new Address(
-                        (long) rs.getInt(1),
+                        rs.getInt(1),
                         rs.getInt(2),
                         rs.getString(3),
                         rs.getString(4),

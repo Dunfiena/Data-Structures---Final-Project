@@ -10,8 +10,7 @@ public class Address {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private int id;
     private int streetNo;
     private String streetName;
     private String city;
@@ -22,7 +21,7 @@ public class Address {
     public Address() {
     }
 
-    public Address(Long id, int streetNo, String streetName, String city, String postal, String province, String country) {
+    public Address(int id, int streetNo, String streetName, String city, String postal, String province, String country) {
         this.id = id;
         this.streetNo = streetNo;
         this.streetName = streetName;
@@ -80,11 +79,11 @@ public class Address {
         this.country = country;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 }

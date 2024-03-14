@@ -1,23 +1,18 @@
 .login-body{
     display: flex;
     flex-direction: row;
-    font-size: 2vw;
-}
-
-.Middle_break{
-    width: 5%;
-    height: auto;
-    background: lightseagreen;
+    font-size: 3vw;
 }
 
 .registerSide{
     margin-left: 4%;
-    width: 40%;
+    width: 80%;
     margin-top: .5%;
+    font-size: 2vw;
 }
 .loginSide {
     margin-left: 4%;
-    width: 40%;
+    width: 80%;
     margin-top: .5%;
 
 }
@@ -43,5 +38,21 @@ button {
     background: red;
     color: aliceblue;
     font-size: 1.5vw;
+
+}
+input {
+    font-size: 1.5vw;
+}
+
+.form_body {
+    display: flex;
+    flex-direction: row;
+}
+.left{
+    width: 45%;
+}
+
+.right {
+    width: 45%;
 
 }

@@ -23,11 +23,11 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>postItem</servlet-name>
+        <servlet-name>addItem</servlet-name>
         <servlet-class>com.example.bidit.bidit_Servlet01_USER_FUNCS</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>postItem</servlet-name>
-        <url-pattern>/postItem</url-pattern>
+        <servlet-name>addItem</servlet-name>
+        <url-pattern>/addItem</url-pattern>
     </servlet-mapping>
 </web-app>

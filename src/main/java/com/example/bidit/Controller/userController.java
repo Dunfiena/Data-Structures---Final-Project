@@ -14,7 +14,7 @@ public class userController implements userDAO {
     PreparedStatement stmt = null;
     ResultSet rs = null;
 
-    User user;
+    User user = new User();
     ArrayList<User> userArrayList;
 
     @Override
@@ -50,7 +50,7 @@ public class userController implements userDAO {
 
             if (rs.next()) {
                 user = new User(
-                        (long) rs.getInt(1),
+                        rs.getInt(1),
                         rs.getString(2),
                         rs.getString(3),
                         rs.getString(4),

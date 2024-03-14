@@ -3,6 +3,7 @@
 }
 
 .form_header{
+    padding-left: 2.5%;
     font-size: 4vw;
     color: firebrick;
     align-items: center;
@@ -24,4 +25,24 @@ button {
     color: aliceblue;
     font-size: 1.5vw;
 
+}
+
+.form_body {
+    display: flex;
+    flex-direction: row;
+}
+.left_form {
+    margin-left: 5%;
+    font-size: 2.5vw;
+    width: 60%;
+}
+.image {
+    width: 25%;
+}
+
+button {
+    width: 50%;
+}
+input {
+    font-size: 2vw;
 }

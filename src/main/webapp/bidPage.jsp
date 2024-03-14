@@ -7,14 +7,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="../CSS/LandingCSS.css" type="text/css">
-    <link rel="stylesheet" href="../CSS/Navbar.css" type="text/css">
+    <link rel="stylesheet" href="CSS/LandingCSS.css" type="text/css">
+    <link rel="stylesheet" href="CSS/Navbar.css" type="text/css">
 
     <title>Bidit - Your bids</title>
 </head>
 <body>
 <div>
-    <jsp:include page="../component/NavBar2.jsp"></jsp:include>
+    <jsp:include page="component/NavBar2.jsp"></jsp:include>
 </div>
 <div>
 

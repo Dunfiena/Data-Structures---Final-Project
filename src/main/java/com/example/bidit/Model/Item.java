@@ -11,13 +11,11 @@ import java.sql.Date;
 public class Item {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private int id;
     private int ownerID;
     private String itemName;
     private double price;
     private String description;
-    private int addressID;
     private Date bidStart ;
     private Date bidEnd;
     private String image;
@@ -25,24 +23,23 @@ public class Item {
     public Item() {
     }
 
-    public Item(Long id, int ownerID, String itemName, double price, String description,
-                int addressID, Date bidStart, Date bidEnd, String image) {
+    public Item(int id, int ownerID, String itemName, double price, String description,
+                Date bidStart, Date bidEnd, String image) {
         this.id = id;
         this.ownerID = ownerID;
         this.itemName = itemName;
         this.price = price;
         this.description = description;
-        this.addressID = addressID;
         this.bidStart = bidStart;
         this.bidEnd = bidEnd;
         this.image = image;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -68,14 +65,6 @@ public class Item {
 
     public void setPrice(double price) {
         this.price = price;
-    }
-
-    public int getAddressID() {
-        return addressID;
-    }
-
-    public void setAddressID(int addressID) {
-        this.addressID = addressID;
     }
 
     public Date getBidStart() {

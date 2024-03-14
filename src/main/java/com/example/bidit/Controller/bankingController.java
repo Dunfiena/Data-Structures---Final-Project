@@ -2,8 +2,6 @@ package com.example.bidit.Controller;
 
 import com.example.bidit.DAO.bankingDAO;
 import com.example.bidit.Model.Banking;
-import com.example.bidit.Model.Item;
-import com.example.bidit.Model.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,8 +16,7 @@ public class bankingController implements bankingDAO {
     PreparedStatement stmt = null;
     ResultSet rs = null;
 
-    Banking banking;
-    ArrayList<Banking> bankingArrayList;
+    Banking banking = new Banking();
 
     @Override
     public Banking insert(int account_num, int branch_num, int transit_num) throws SQLException {
@@ -33,20 +30,39 @@ public class bankingController implements bankingDAO {
             stmt.executeUpdate();
             stmt = conn.prepareStatement("SELECT * FROM banking where account_num=?");
             stmt.setInt(1,account_num);
-            rs =  stmt.executeQuery();
+            stmt.executeQuery();
+
+            banking = select(account_num, branch_num, transit_num);
+                return banking;
+
+        }catch (Exception ex){
+            System.out.println("Error:" + ex.getMessage());
+        }
+        return banking;
+    }
+
+    @Override
+    public Banking select(int account, int transit, int branch) throws SQLException {
+        try {
+            conn = getConnection();
+            stmt = conn.prepareStatement("SELECT * FROM banking WHERE account_num=? and transit_num=? and branch_num=?");
+            stmt.setInt(1, account);
+            stmt.setInt(1, transit);
+            stmt.setInt(1, branch);
+
+            rs = stmt.executeQuery();
 
             if (rs.next()) {
                 banking = new Banking(
-                        (long) rs.getInt(1),
+                        rs.getInt(1),
                         rs.getInt(2),
                         rs.getInt(3),
                         rs.getInt(4)
                 );
                 return banking;
             }
-
-        }catch (Exception ex){
-            System.out.println("Error:" + ex.getMessage());
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
         return banking;
     }
@@ -61,7 +77,7 @@ public class bankingController implements bankingDAO {
 
             if (rs.next()) {
                 banking = new Banking(
-                        (long) rs.getInt(1),
+                        rs.getInt(1),
                         rs.getInt(2),
                         rs.getInt(3),
                         rs.getInt(4)

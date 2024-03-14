@@ -8,9 +8,7 @@ import jakarta.persistence.Id;
 @Entity
 public class Banking {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-
-    private Long id;
+    private int id;
     private int account;
     private int branch;
     private int transit;
@@ -18,18 +16,18 @@ public class Banking {
     public Banking() {
     }
 
-    public Banking(Long id, int account, int branch, int transit) {
+    public Banking(int id, int account, int branch, int transit) {
         this.id = id;
         this.account = account;
         this.branch = branch;
         this.transit = transit;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 

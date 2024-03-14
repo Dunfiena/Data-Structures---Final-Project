@@ -11,9 +11,7 @@ import java.util.Date;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-
-    private Long id;
+    private int id;
     private String userName;
     private String firstName;
     private String lastName;
@@ -27,7 +25,7 @@ public class User {
     public User() {
     }
 
-    public User(Long id, String userName, String firstName, String lastName,
+    public User(int id, String userName, String firstName, String lastName,
                 Date dateOfBirth, String phone, String email, int bankingID,
                 int addressID,String password) {
         this.id = id;
@@ -106,11 +104,11 @@ public class User {
         this.addressID = addressID;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 

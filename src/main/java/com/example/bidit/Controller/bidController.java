@@ -17,7 +17,7 @@ public class bidController implements bidDAO {
     PreparedStatement stmt = null;
     ResultSet rs = null;
 
-    Bid bid;
+    Bid bid = new Bid();
     ArrayList<Bid> bidArrayList;
 
     @Override
@@ -45,7 +45,7 @@ public class bidController implements bidDAO {
 
             if (rs.next()) {
                 bid = new Bid(
-                        (long) rs.getInt(1),
+                        rs.getInt(1),
                         rs.getInt(2),
                         rs.getInt(3),
                         rs.getDouble(4),

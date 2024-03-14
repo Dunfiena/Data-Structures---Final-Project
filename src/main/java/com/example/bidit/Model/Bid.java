@@ -9,7 +9,7 @@ import java.sql.Date;
 public class Bid {
 
     @Id
-    private Long id;
+    private int id;
     private int userID;
     private int itemID;
     private double amount;
@@ -18,7 +18,7 @@ public class Bid {
     public Bid() {
     }
 
-    public Bid(Long id, int userID, int itemID, double amount, Date bidcastTime) {
+    public Bid(int id, int userID, int itemID, double amount, Date bidcastTime) {
         this.id = id;
         this.userID = userID;
         this.itemID = itemID;
@@ -58,11 +58,11 @@ public class Bid {
         this.bidcastTime = bidcastTime;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 }

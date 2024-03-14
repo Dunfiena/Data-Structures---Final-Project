@@ -1,6 +1,6 @@
 <!-- NavBar setup -->
 <div class="topBar">
-    <div class="logoIMG"><a href="../index.jsp">Bidit</a></div>
+    <div class="logoIMG"><a href="index.jsp">Bidit</a></div>
     <div class="secondBox">
         <div class="navbar">
             <table>
