@@ -56,7 +56,16 @@ public class bidit_Servlet01_USER_FUNCS extends HttpServlet {
                 } catch (ServletException | SQLException e) {
                     throw new RuntimeException(e);
                 }
+                break;
+            case "/placeBid":
+                placeBid(request,response);
+                break;
         }
+    }
+
+    private void placeBid(HttpServletRequest request, HttpServletResponse response) {
+
+
     }
 
     private void addItem(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {

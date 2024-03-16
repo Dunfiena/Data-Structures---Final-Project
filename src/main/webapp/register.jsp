@@ -15,12 +15,12 @@
     <div class="Middle_break"></div>
 
     <div class="registerSide">
-        <div class="form_header">Register</div>
-        <br>
         <form name="registerform" method="get" action="register">
             <div class="form_body">
                 <div class="left">
-                <a href="login.jsp" style="font-size: 1.5vw">Already got an account?</a><br>
+                    <div class="form_header">Register</div>
+
+                    <a href="login.jsp" style="font-size: 1.5vw">Already got an account?</a><br>
                 <label>
                     User Name:
                     <input type="text" name="userName" placeholder="enter user name" required>
@@ -55,9 +55,13 @@
                     Password:
                     <input type="password" name="password" placeholder="enter password" required>
                 </label>
+                    <br><br>
+                    <button type="submit" class="submit_button"><b>Register</b></button>
+                    <br>
+                    <button type="reset" class="reset_button"><b>Reset</b></button>
                 </div>
                 <div class="right">
-                    <h2 style="color: red; font-size: 2.5vw">Banking Information:</h2>
+                    <h2 style="color: firebrick; font-size: 2.5vw">Banking Information:</h2>
                     <label>Bank account number(00000):
                     <input type="number" min="0" max="99999" name="accountNum">
                     </label>
@@ -70,7 +74,7 @@
                         <input type="number" min="0" max="999" name="transitNum">
                     </label>
                     <br>
-                    <h2 style="color: red; font-size: 2.5vw"> Address Information:</h2>
+                    <h2 style="color: firebrick; font-size: 2.5vw"> Address Information:</h2>
                     <label>House Number:
                         <input type="number" min="0" max="99999" name="houseNum">
                     </label>
@@ -98,10 +102,7 @@
 
                 </div>
             </div>
-            <br><br>
-            <button type="submit" class="submit_button"><b>Register</b></button>
-            <br>
-            <button type="reset" class="reset_button"><b>Reset</b></button>
+
         </form>
 
     </div>

@@ -30,4 +30,12 @@
         <servlet-name>addItem</servlet-name>
         <url-pattern>/addItem</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>placeBid</servlet-name>
+        <servlet-class>com.example.bidit.bidit_Servlet01_USER_FUNCS</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>placeBid</servlet-name>
+        <url-pattern>/placeBid</url-pattern>
+    </servlet-mapping>
 </web-app>

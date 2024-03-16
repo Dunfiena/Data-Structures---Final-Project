@@ -10,9 +10,15 @@
     margin-top: .5%;
     font-size: 2vw;
 }
+.registerSidelog{
+    margin-left: 4%;
+    width: 50%;
+    padding-top: 25%;
+    font-size: 2vw;
+}
 .loginSide {
     margin-left: 4%;
-    width: 80%;
+    width: 50%;
     margin-top: .5%;
 
 }
@@ -55,4 +61,8 @@ input {
 .right {
     width: 45%;
 
+}
+
+.callLogin {
+    width: 100%;
 }

@@ -1,7 +1,6 @@
 package com.example.bidit.Controller;
 
 import com.example.bidit.DAO.itemDAO;
-import com.example.bidit.Model.Address;
 import com.example.bidit.Model.Item;
 
 import java.sql.*;
@@ -62,6 +61,34 @@ public class itemController implements itemDAO {
             throw new RuntimeException(e);
         }
         return item;
+    }
+
+    @Override
+    public ArrayList<Item> selectAll() throws SQLException {
+        ArrayList<Item> items = new ArrayList<>();
+        try {
+            conn = getConnection();
+            stmt = conn.prepareStatement("SELECT * FROM item");
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                item = new Item(
+                        rs.getInt(1),
+                        rs.getInt(2),
+                        rs.getString(3),
+                        rs.getDouble(4),
+                        rs.getString(5),
+                        rs.getDate(6),
+                        rs.getDate(7),
+                        rs.getString(8)
+                );
+                items.add(item);
+            }
+            return items;
+
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
