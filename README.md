@@ -17,7 +17,9 @@ The important aspect to this site, is the data structure and algorithm packages 
 The database schema allows entry of user information and banking information.  We have tables for income, and expense, as well as investements and budgets.  
 Below you will find a database schema for reference
 
------------------------Insert Database Schema here
+![Untitled](https://github.com/Dunfiena/Data-Structures---Final-Project/assets/117761149/c14afdd2-2194-4f74-91ce-a5f3abe2e6a6)
+
+
 
 ## Complexity and system design ##
 
