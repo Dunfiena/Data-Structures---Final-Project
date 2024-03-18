@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface itemDAO {
-    public void insert (int ownerID, String itemName, double Price, String description, String image) throws SQLException;
+    public void insert (int ownerID, String itemName, int Price, String description, String image) throws SQLException;
 
     ArrayList<Item> selectAll() throws SQLException;
 

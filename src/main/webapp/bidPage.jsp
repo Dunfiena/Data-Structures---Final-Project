@@ -13,7 +13,9 @@
     bidController bcon = new bidController();
 
     try {
-        bids = bcon.selectAll(user.getId());
+        if (user !=null) {
+            bids = bcon.selectAll(user.getId());
+        }
     } catch (SQLException e) {
         throw new RuntimeException(e);
     }
@@ -22,7 +24,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="CSS/LandingCSS.css" type="text/css">
+    <link rel="stylesheet" href="CSS/bidPageCSS.css" type="text/css">
     <link rel="stylesheet" href="CSS/Navbar.css" type="text/css">
 
     <title>Bidit - Your bids</title>
@@ -31,7 +33,7 @@
 <div>
     <jsp:include page="component/NavBar2.jsp"></jsp:include>
 </div>
-<div class="my Bids:">
+<div class="myBids">
     <div class="bidBody">
         <% if (!bids.isEmpty()){
             for (Bid b: bids) {
@@ -44,13 +46,14 @@
                 }
         %>
         <div class="card">
-            <img src="<%=item.getImage()%>" alt="No image uploaded for this item">
-            Item Name: <%=item.getItemName()%>
-            Description: <%=item.getDescription()%>
-            Bid Ending: <%=item.getBidEnd()%>
+            <img src="CSS/img/<%=item.getImage()%>" alt="No image uploaded for this item" width="60%">
+            <br>
+            Item Name: <%=item.getItemName()%><br>
+            Description: <%=item.getDescription()%><br>
+            Bid Ending: <%=item.getBidEnd()%><br>
 
-            Your current bid: <%=b.getAmount()%>
-            Bid cast: <%=b.getBidcastTime()%>
+            Your current bid: <%=b.getAmount()%><br>
+            Bid cast: <%=b.getBidcastTime()%><br>
         </div>
         <%}
         }%>

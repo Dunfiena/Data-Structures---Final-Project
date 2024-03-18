@@ -17,14 +17,14 @@ public class itemController implements itemDAO {
     ArrayList<Item> itemArrayList;
 
     @Override
-    public void insert(int ownerID, String itemName, double Price, String description, String image) throws SQLException {
+    public void insert(int ownerID, String itemName, int Price, String description, String image) throws SQLException {
         try{
             Date bidEnd = new Date(2024, 11,21);
             conn = getConnection();
             stmt = conn.prepareStatement("INSERT INTO item(ownerID, itemName, Price, description, bidEnd, image) VALUES (?,?,?,?,?,?)");
             stmt.setInt(1, ownerID);
             stmt.setString(2, itemName);
-            stmt.setDouble(3, Price);
+            stmt.setInt(3, Price);
             stmt.setString(4, description);
             stmt.setDate(5, bidEnd);
             stmt.setString(6,image);
@@ -49,7 +49,7 @@ public class itemController implements itemDAO {
                         rs.getInt(1),
                         rs.getInt(2),
                         rs.getString(3),
-                        rs.getDouble(4),
+                        rs.getInt(4),
                         rs.getString(5),
                         rs.getDate(6),
                         rs.getDate(7),
@@ -76,7 +76,7 @@ public class itemController implements itemDAO {
                         rs.getInt(1),
                         rs.getInt(2),
                         rs.getString(3),
-                        rs.getDouble(4),
+                        rs.getInt(4),
                         rs.getString(5),
                         rs.getDate(6),
                         rs.getDate(7),
@@ -97,7 +97,7 @@ public class itemController implements itemDAO {
             conn = getConnection();
             stmt = conn.prepareStatement("UPDATE item SET itemName=?, Price=?, description=?, bidEnd=?, image=? WHERE itemID=?;");
             stmt.setString(1, item.getItemName());
-            stmt.setDouble(2, item.getPrice());
+            stmt.setInt(2, item.getPrice());
             stmt.setString(3, item.getDescription());
             stmt.setDate(4, item.getBidEnd());
             stmt.setString(5, item.getImage());

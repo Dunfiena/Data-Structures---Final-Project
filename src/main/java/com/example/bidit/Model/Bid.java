@@ -12,13 +12,13 @@ public class Bid {
     private int id;
     private int userID;
     private int itemID;
-    private double amount;
+    private int amount;
     private Date bidcastTime;
 
     public Bid() {
     }
 
-    public Bid(int id, int userID, int itemID, double amount, Date bidcastTime) {
+    public Bid(int id, int userID, int itemID, int amount, Date bidcastTime) {
         this.id = id;
         this.userID = userID;
         this.itemID = itemID;
@@ -42,11 +42,11 @@ public class Bid {
         this.itemID = itemID;
     }
 
-    public double getAmount() {
+    public int getAmount() {
         return amount;
     }
 
-    public void setAmount(double amount) {
+    public void setAmount(int amount) {
         this.amount = amount;
     }
 

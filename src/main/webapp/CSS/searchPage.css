@@ -42,12 +42,12 @@ form {
     margin-top: 1%;
     color: black;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     border: chocolate 2px double;
 }
 
 .cardImg {
-    width: 33%;
+    width: 25%;
 }
 
 .cardDescription {

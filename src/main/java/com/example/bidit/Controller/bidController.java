@@ -20,13 +20,13 @@ public class bidController implements bidDAO {
     ArrayList<Bid> bidArrayList;
 
     @Override
-    public void insert(int UserID, int itemID, double amount) throws SQLException {
+    public void insert(int UserID, int itemID, int amount) throws SQLException {
         try{
             conn = getConnection();
             stmt = conn.prepareStatement("INSERT INTO bid(UserID, itemID, amount) VALUES (?,?,?)");
             stmt.setInt(1, UserID);
             stmt.setInt(2, itemID);
-            stmt.setDouble(3, amount);
+            stmt.setInt(3, amount);
 
             stmt.executeUpdate();
 
@@ -47,7 +47,7 @@ public class bidController implements bidDAO {
                         rs.getInt(1),
                         rs.getInt(2),
                         rs.getInt(3),
-                        rs.getDouble(4),
+                        rs.getInt(4),
                         rs.getDate(5)
                 );
                 return bid;
@@ -72,7 +72,7 @@ public class bidController implements bidDAO {
                         rs.getInt(1),
                         rs.getInt(2),
                         rs.getInt(3),
-                        rs.getDouble(4),
+                        rs.getInt(4),
                         rs.getDate(5)
                 );
                 bidArrayList.add(bid);

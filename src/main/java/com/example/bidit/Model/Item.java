@@ -14,7 +14,7 @@ public class Item {
     private int id;
     private int ownerID;
     private String itemName;
-    private double price;
+    private int price;
     private String description;
     private Date bidStart ;
     private Date bidEnd;
@@ -23,7 +23,7 @@ public class Item {
     public Item() {
     }
 
-    public Item(int id, int ownerID, String itemName, double price, String description,
+    public Item(int id, int ownerID, String itemName, int price, String description,
                 Date bidStart, Date bidEnd, String image) {
         this.id = id;
         this.ownerID = ownerID;
@@ -59,11 +59,11 @@ public class Item {
         this.itemName = itemName;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 

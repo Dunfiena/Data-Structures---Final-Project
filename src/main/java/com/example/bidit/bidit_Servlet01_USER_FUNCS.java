@@ -58,7 +58,11 @@ public class bidit_Servlet01_USER_FUNCS extends HttpServlet {
                 }
                 break;
             case "/placeBid":
-                placeBid(request,response);
+                try {
+                    placeBid(request,response);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
                 break;
 
             case "/itemDisplay":
@@ -89,8 +93,15 @@ public class bidit_Servlet01_USER_FUNCS extends HttpServlet {
 
     }
 
-    private void placeBid(HttpServletRequest request, HttpServletResponse response) {
+    private void placeBid(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
+        HttpSession sess = request.getSession();
+        user =(User)sess.getAttribute("user");
+        int itemID = Integer.parseInt(request.getParameter("itemID"));
+        int amount = Integer.parseInt(request.getParameter("amount"));
 
+        bidControl = new bidController();
+        bidControl.insert(user.getId(), itemID, amount);
+        response.sendRedirect("bidPage.jsp");
 
     }
 

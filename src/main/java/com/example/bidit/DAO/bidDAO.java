@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface bidDAO {
-    public void insert (int UserID, int itemID, double amount) throws SQLException;
+    public void insert (int UserID, int itemID, int amount) throws SQLException;
 
     ArrayList<Bid> selectAll(int userID) throws SQLException;
 

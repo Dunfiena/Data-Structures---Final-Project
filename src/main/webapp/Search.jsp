@@ -39,7 +39,7 @@
             <a  href="javascript:{}" onclick="document.getElementById('choice').submit();">
                 <div class="card">
                     <div class="cardImg">
-                        <img src="<%=item.getImage()%>" alt="No image uploaded for this item">
+                        <img src="CSS/img/<%=item.getImage()%>" alt="No image uploaded for this item">
                     </div>
                     <div class="cardDescription">
                         <table>

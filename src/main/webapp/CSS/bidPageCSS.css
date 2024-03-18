@@ -1,0 +1,14 @@
+.myBids {
+    width: 100%;
+}
+
+.bidBody {
+    width: 100%;
+}
+.card {
+    font-size: 2vw;
+    width: 33%;
+    height: 50%;
+    background: white;
+    border: chocolate 2px double;
+}
