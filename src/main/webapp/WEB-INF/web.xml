@@ -38,4 +38,13 @@
         <servlet-name>placeBid</servlet-name>
         <url-pattern>/placeBid</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>itemDisplay</servlet-name>
+        <servlet-class>com.example.bidit.bidit_Servlet01_USER_FUNCS</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>itemDisplay</servlet-name>
+        <url-pattern>/itemDisplay</url-pattern>
+    </servlet-mapping>
 </web-app>

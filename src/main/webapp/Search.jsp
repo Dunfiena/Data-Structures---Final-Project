@@ -18,32 +18,49 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="CSS/LandingCSS.css" type="text/css">
+    <link rel="stylesheet" href="CSS/searchPage.css" type="text/css">
     <link rel="stylesheet" href="CSS/Navbar.css" type="text/css">
 
     <title>Bidit - Search</title>
 </head>
 <body>
+
 <div>
     <jsp:include page="component/NavBar2.jsp"></jsp:include>
 </div>
-<div class="searchBar">
-    <form name="searchBar" action="searchBar" method="get">
-        <input type="text" name="search" placeholder="Enter desired text">
-        <button type="submit">Search</button>
-    </form>
-</div>
-<div class="itemCards">
-    <% if (!items.isEmpty()){
-    for (Item item:items){%>
-    <div class="card">
-        <img src="<%=item.getImage()%>" alt="No image uploaded for this item">
-        Item Name: <%=item.getItemName()%>
-        Description: <%=item.getDescription()%>
-        Bid Ending: <%=item.getBidEnd()%>
+
+<div class="searchbody">
+    <div class="itemCards">
+        <% if (!items.isEmpty()){
+        for (Item item:items){%>
+
+        <form action="itemDisplay" id="choice" method="get">
+            <input type="hidden" value="<%=item.getId()%>" name="id">
+            <a  href="javascript:{}" onclick="document.getElementById('choice').submit();">
+                <div class="card">
+                    <div class="cardImg">
+                        <img src="<%=item.getImage()%>" alt="No image uploaded for this item">
+                    </div>
+                    <div class="cardDescription">
+                        <table>
+                            <tr>
+                                <th>Item Name</th>
+                                <th>Description</th>
+                                <th>Bid Ending</th>
+                            </tr>
+                            <tr>
+                                <th><%=item.getItemName()%></th>
+                                <th><%=item.getDescription()%></th>
+                                <th><%=item.getBidEnd()%></th>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                </a>
+        </form>
+        <%}
+            }%>
     </div>
-    <%}
-        }%>
 </div>
 </body>
 </html>

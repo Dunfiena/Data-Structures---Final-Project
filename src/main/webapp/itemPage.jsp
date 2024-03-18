@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="CSS/LandingCSS.css" type="text/css">
     <link rel="stylesheet" href="CSS/Navbar.css" type="text/css">
 <%
-    Item item = (Item)request.getAttribute("items");
+    Item item = (Item)session.getAttribute("item");
     User user = (User) session.getAttribute("user");
 %>
     <title>Bidding is on:  <%=item.getItemName()%></title>

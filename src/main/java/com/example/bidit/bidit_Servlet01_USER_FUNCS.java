@@ -60,7 +60,33 @@ public class bidit_Servlet01_USER_FUNCS extends HttpServlet {
             case "/placeBid":
                 placeBid(request,response);
                 break;
+
+            case "/itemDisplay":
+                try {
+                    itemDisplay(request,response);
+                } catch (SQLException | ServletException e) {
+                    throw new RuntimeException(e);
+                }
+                break;
         }
+    }
+
+    private void itemDisplay(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        HttpSession sess = request.getSession();
+
+        int id = Integer.parseInt(request.getParameter("id"));
+
+        itemControl = new itemController();
+
+        item = itemControl.select(id);
+
+        sess.setAttribute("item", item);
+
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/itemPage.jsp");
+        rd.include(request, response);
+        rd.forward(request, response);
+        response.sendRedirect("itemPage.jsp");
+
     }
 
     private void placeBid(HttpServletRequest request, HttpServletResponse response) {

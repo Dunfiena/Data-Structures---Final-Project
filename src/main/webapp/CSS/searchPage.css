@@ -1,0 +1,57 @@
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+.search {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+.searchbody {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+input {
+    margin-left: 5%;
+    width: 66%;
+    font-size: 2.5vw;
+}
+
+button {
+    width: 25%;
+    font-size: 2.5vw;
+    color: white;
+    background: green;
+}
+form {
+    width: 100%;
+}
+
+.itemCards{
+    margin-left: 10%;
+    width: 80%;
+}
+
+.card {
+    height: 15%;
+    width: 100%;
+    background: white;
+    margin-top: 1%;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    border: chocolate 2px double;
+}
+
+.cardImg {
+    width: 33%;
+}
+
+.cardDescription {
+    width: 60%;
+    margin-left: 2%;
+    font-size: 2.5vw;
+}
