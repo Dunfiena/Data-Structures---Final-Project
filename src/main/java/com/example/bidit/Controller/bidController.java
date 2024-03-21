@@ -2,6 +2,7 @@ package com.example.bidit.Controller;
 
 import com.example.bidit.DAO.bidDAO;
 import com.example.bidit.Model.Bid;
+import com.example.bidit.Model.Item;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -77,6 +78,32 @@ public class bidController implements bidDAO {
                 );
                 bidArrayList.add(bid);
            }
+            return bidArrayList;
+
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public ArrayList<Bid> selectAll(Item item) throws SQLException {
+        bidArrayList = new ArrayList<>();
+        try {
+            conn = getConnection();
+            stmt = conn.prepareStatement("SELECT * FROM bid WHERE itemID=?");
+            stmt.setInt(1, item.getId());
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                bid = new Bid(
+                        rs.getInt(1),
+                        rs.getInt(2),
+                        rs.getInt(3),
+                        rs.getInt(4),
+                        rs.getDate(5)
+                );
+                bidArrayList.add(bid);
+            }
             return bidArrayList;
 
         } catch (SQLException | ClassNotFoundException e) {

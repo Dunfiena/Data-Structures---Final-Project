@@ -40,7 +40,7 @@ public class itemController implements itemDAO {
     public Item select(int itemId) throws SQLException {
         try {
             conn = getConnection();
-            stmt = conn.prepareStatement("SELECT * FROM item WHERE itemID = ?");
+            stmt = conn.prepareStatement("SELECT * FROM item WHERE itemID=?");
             stmt.setInt(1, itemId);
             rs = stmt.executeQuery();
 

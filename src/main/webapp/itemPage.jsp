@@ -5,11 +5,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script src="bidit_scripts.js"></script>
     <link rel="stylesheet" href="CSS/viewItem.css" type="text/css">
     <link rel="stylesheet" href="CSS/Navbar.css" type="text/css">
 <%
     Item item = (Item)session.getAttribute("item");
     User user = (User) session.getAttribute("user");
+    boolean login = false;
+    if (user != null) {
+        login = true;
+    }
 %>
     <title>Bidding is on:  <%=item.getItemName()%></title>
 </head>
@@ -29,11 +34,11 @@
         </div>
         <div class="bidForm">
             Place your own bid:
-            <form name="bid" method="get" action="placeBid">
+            <form name="bid" method="get" onsubmit=" return checkBid(<%=login%>, <%=item.getPrice()%>, 'Amount<%=item.getId()%>')" action="placeBid">
                 <input type="hidden" name="itemID" value="<%=item.getId()%>">
                 <label>
                     Bid Amount:<br>
-                    <input type="number" name="amount" required>
+                    <input type="number" name="amount" id="Amount<%=item.getId()%>" required>
                 </label>
                 <br><br>
                 <label>

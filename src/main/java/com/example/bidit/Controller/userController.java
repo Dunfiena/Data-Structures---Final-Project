@@ -1,7 +1,6 @@
 package com.example.bidit.Controller;
 
 import com.example.bidit.DAO.userDAO;
-import com.example.bidit.Model.Item;
 import com.example.bidit.Model.User;
 
 import java.sql.*;
@@ -46,6 +45,36 @@ public class userController implements userDAO {
             stmt = conn.prepareStatement("SELECT * FROM user WHERE username = ? AND password = ?");
             stmt.setString(1, userName);
             stmt.setString(2, Password);
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                user = new User(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getDate(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getInt(8),
+                        rs.getInt(9),
+                        rs.getString(10)
+
+                );
+                return user;
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return user;
+    }
+
+    @Override
+    public User select(int userID) throws SQLException {
+        try {
+            conn = getConnection();
+            stmt = conn.prepareStatement("SELECT * FROM user WHERE userID=?");
+            stmt.setInt(1, userID);
             rs = stmt.executeQuery();
 
             if (rs.next()) {

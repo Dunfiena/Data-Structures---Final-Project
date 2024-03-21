@@ -1,7 +1,10 @@
 package com.example.bidit;
 
 import com.example.bidit.Controller.*;
+import com.example.bidit.DataHandler.Algorithm;
+import com.example.bidit.DataHandler.DataStructure;
 import com.example.bidit.Model.*;
+import jakarta.json.bind.config.BinaryDataStrategy;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -72,7 +75,45 @@ public class bidit_Servlet01_USER_FUNCS extends HttpServlet {
                     throw new RuntimeException(e);
                 }
                 break;
+            case "/bidEnds":
+                try {
+                    generateWinner(request,response);
+                } catch (SQLException | ServletException e) {
+                    throw new RuntimeException(e);
+                }
+                break;
         }
+    }
+
+    private void generateWinner(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        HttpSession sess = request.getSession();
+
+        itemControl = new itemController();
+        bidControl = new bidController();
+
+        DataStructure dt = new DataStructure();
+        ArrayList<DataStructure> dataStructures = new ArrayList<>();
+        Algorithm algo = new Algorithm();
+
+        int itemID = Integer.parseInt(request.getParameter("itemID"));
+        Item item = itemControl.select(itemID);
+
+        ArrayList<Bid> bidArrayList = new ArrayList<>();
+        bidArrayList = bidControl.selectAll(item);
+
+        for (Bid bid: bidArrayList) {
+            dt = new DataStructure(bid.getUserID(), bid.getAmount(), bid.getBidcastTime());
+            dataStructures.add(dt);
+        }
+        dt = algo.returnWinner(dataStructures);
+
+        sess.setAttribute("winner", dt);
+        sess.setAttribute("item", item);
+
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/winner.jsp");
+        rd.include(request, response);
+        rd.forward(request, response);
+        response.sendRedirect("winner.jsp");
     }
 
     private void itemDisplay(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
@@ -83,7 +124,7 @@ public class bidit_Servlet01_USER_FUNCS extends HttpServlet {
         itemControl = new itemController();
 
         item = itemControl.select(id);
-
+        sess.removeAttribute("item");
         sess.setAttribute("item", item);
 
         RequestDispatcher rd = getServletContext().getRequestDispatcher("/itemPage.jsp");
@@ -98,7 +139,6 @@ public class bidit_Servlet01_USER_FUNCS extends HttpServlet {
         user =(User)sess.getAttribute("user");
         int itemID = Integer.parseInt(request.getParameter("itemID"));
         int amount = Integer.parseInt(request.getParameter("amount"));
-
         bidControl = new bidController();
         bidControl.insert(user.getId(), itemID, amount);
         response.sendRedirect("bidPage.jsp");
@@ -193,6 +233,8 @@ public class bidit_Servlet01_USER_FUNCS extends HttpServlet {
         rd.forward(request,response);
         response.sendRedirect("bidPage.jsp");
     }
+
+
 
     public void destroy() {
     }

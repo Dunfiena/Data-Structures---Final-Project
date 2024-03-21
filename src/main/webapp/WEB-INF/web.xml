@@ -47,4 +47,13 @@
         <servlet-name>itemDisplay</servlet-name>
         <url-pattern>/itemDisplay</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>bidEnds</servlet-name>
+        <servlet-class>com.example.bidit.bidit_Servlet01_USER_FUNCS</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>bidEnds</servlet-name>
+        <url-pattern>/bidEnds</url-pattern>
+    </servlet-mapping>
 </web-app>
