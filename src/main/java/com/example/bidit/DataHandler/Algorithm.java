@@ -46,7 +46,6 @@ public class Algorithm {
                 }
             }
         }
-
         return untimed;
     }
 }

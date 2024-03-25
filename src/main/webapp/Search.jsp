@@ -34,9 +34,9 @@
         <% if (!items.isEmpty()){
         for (Item item:items){%>
 
-        <form action="itemDisplay" id="choice" method="get">
+        <form action="itemDisplay" id="choice<%=item.getId()%>" method="get">
             <input type="hidden" value="<%=item.getId()%>" name="id">
-            <a  href="javascript:{}" onclick="document.getElementById('choice').submit();">
+            <a  href="javascript:{}" onclick="document.getElementById('choice<%=item.getId()%>').submit();">
                 <div class="card">
                     <div class="cardImg">
                         <img src="CSS/img/<%=item.getImage()%>" alt="No image uploaded for this item">

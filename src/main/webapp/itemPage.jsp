@@ -1,6 +1,8 @@
 <%@ page import="com.example.bidit.Model.Item" %>
 <%@ page import="com.example.bidit.Model.User" %>
 <%@ page import="java.util.Objects" %>
+<%@ page import="com.example.bidit.Controller.itemController" %>
+<%@ page import="java.sql.SQLException" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -9,8 +11,15 @@
     <link rel="stylesheet" href="CSS/viewItem.css" type="text/css">
     <link rel="stylesheet" href="CSS/Navbar.css" type="text/css">
 <%
-    Item item = (Item)session.getAttribute("item");
+    int itemID = (int) session.getAttribute("id");
     User user = (User) session.getAttribute("user");
+    itemController icon = new itemController();
+    Item item = new Item();
+    try {
+        item = icon.select(itemID);
+    } catch (SQLException e) {
+        throw new RuntimeException(e);
+    }
     boolean login = false;
     if (user != null) {
         login = true;

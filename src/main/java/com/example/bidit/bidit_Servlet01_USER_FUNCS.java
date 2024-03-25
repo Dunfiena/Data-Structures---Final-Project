@@ -121,11 +121,7 @@ public class bidit_Servlet01_USER_FUNCS extends HttpServlet {
 
         int id = Integer.parseInt(request.getParameter("id"));
 
-        itemControl = new itemController();
-
-        item = itemControl.select(id);
-        sess.removeAttribute("item");
-        sess.setAttribute("item", item);
+        sess.setAttribute("id", id);
 
         RequestDispatcher rd = getServletContext().getRequestDispatcher("/itemPage.jsp");
         rd.include(request, response);
